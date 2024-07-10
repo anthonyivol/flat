@@ -3,6 +3,7 @@ export interface FlattenOptions {
   maxDepth?: number;
   safe?: boolean;
   transformKey?: (key: string) => string;
+  shouldFlat?: (value:any) => boolean;
 }
 
 export function flatten<T, R>(target: T, options?: FlattenOptions): R;
