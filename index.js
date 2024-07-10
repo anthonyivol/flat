@@ -33,7 +33,9 @@ export function flatten (target, opts) {
         ? prev + delimiter + transformKey(key)
         : transformKey(key)
 
-      if (!isarray && !isbuffer && isobject && Object.keys(value).length &&
+      const shouldFlat = opts.shouldFlat ? opts.shouldFlat(value) : true
+      
+      if (shouldFlat && !isarray && !isbuffer && isobject && Object.keys(value).length &&
         (!opts.maxDepth || currentDepth < maxDepth)) {
         return step(value, newKey, currentDepth + 1)
       }
